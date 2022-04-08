@@ -12,7 +12,7 @@ package PDCProject;
 public class Mole {
     private boolean isVisible;
 
-    public boolean isIsVisible() {
+    public boolean isVisible() {
         return isVisible;
     }
 
@@ -20,7 +20,6 @@ public class Mole {
         this.isVisible = isVisible;
     }
    
-    
     @Override
     public String toString(){
         if(isVisible){

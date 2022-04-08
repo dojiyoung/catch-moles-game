@@ -9,6 +9,15 @@ package PDCProject;
  *
  * @author OEM
  */
-public class ScreenUpdator {
+public class ScreenUpdator extends Thread{
+    Gameboard gb;
     
+    public ScreenUpdator(Gameboard gb){
+        this.gb = gb;
+    }
+    
+    @Override
+    public void run(){
+        gb.showOneMole();
+    }
 }

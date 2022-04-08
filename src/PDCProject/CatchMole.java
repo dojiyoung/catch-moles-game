@@ -16,20 +16,23 @@ import java.util.TimerTask;
 public class CatchMole {
 
     public static void main(String[] args) {
-        Gameboard gameboard = new Gameboard(new Size(3,3));
-        
-        gameboard.printBoard();
-        gameboard.randomise();
-        gameboard.printBoard();
-//        Scanner sc = new Scanner(System.in);
+        Gameboard gameboard = new Gameboard(new Size(3, 3));
+        Scanner sc = new Scanner(System.in);
+        ScreenUpdator su = new ScreenUpdator(gameboard);
+        Mole mole = new Mole();
+        Score score = new Score();
+
         Timer time = new Timer();
         PrintGameTask printGameTask = new PrintGameTask(gameboard);
+
         time.schedule(printGameTask, 1000);
-        
-//        while (!isRun) {
-//            
-//            int user = sc.nextInt();
-//            gameboard.isMoleAtIndex(user);
-//        }
+        su.start();
+        int user = sc.nextInt();
+        try {
+            gameboard.isMoleAtIndex(user);
+        }catch(NullPointerException e){
+            System.out.println(e);
+        }
+        System.out.println(score.getScore());
     }
 }

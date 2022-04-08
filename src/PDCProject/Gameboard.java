@@ -17,6 +17,8 @@ public class Gameboard {
     private Random rand = new Random();
     private HashMap<Integer, Mole> moles;
     private Size size;
+    private Mole mole;
+    private Score score;
 
     public Gameboard(Size size) {
         this.size = size;
@@ -37,7 +39,6 @@ public class Gameboard {
         for (int i = 0; i < moles.size(); i++) {
             moles.get(i).setIsVisible(false);
         }
-
     }
 
     public void printBoard() {
@@ -51,6 +52,12 @@ public class Gameboard {
     }
 
     public void isMoleAtIndex(int index) {
-
+            for(int i = 0; i == index; i++){
+                if(mole.isVisible() == true){
+                    score.setScore(score.getScore() + 10);
+                } else {
+                    score.setScore(score.getScore());
+                }
+            }
     }
 }
