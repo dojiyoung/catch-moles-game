@@ -5,9 +5,9 @@
  */
 package PDCProject;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  *
@@ -17,22 +17,51 @@ public class CatchMole {
 
     public static void main(String[] args) {
         Gameboard gameboard = new Gameboard(new Size(3, 3));
-        Scanner sc = new Scanner(System.in);
-        ScreenUpdator su = new ScreenUpdator(gameboard);
-        Mole mole = new Mole();
         Score score = new Score();
+        Scanner sc = new Scanner(System.in);
 
         Timer time = new Timer();
-        PrintGameTask printGameTask = new PrintGameTask(gameboard);
 
-        time.schedule(printGameTask, 1000);
-        su.start();
-        int user = sc.nextInt();
-        try {
-            gameboard.isMoleAtIndex(user);
-        }catch(NullPointerException e){
-            System.out.println(e);
+        PrintGameTask printGameTask = new PrintGameTask(gameboard);
+        UpdateBoardTask updateBoardTask = new UpdateBoardTask(gameboard);
+
+        time.schedule(printGameTask, 100, 2000);
+
+        time.schedule(updateBoardTask, 0, 2001);
+
+        while (true) {
+            boolean isValidIndex = false;
+            String inputFromUser = null;
+            int indexFromUser = -1;
+            do {
+
+                inputFromUser = sc.nextLine();
+                if ("q".equalsIgnoreCase(inputFromUser)) {
+                    System.out.println("Score: "+score.getScore());
+                    System.exit(0);
+                } else {
+                    try {
+                        indexFromUser = Integer.parseInt(inputFromUser);
+
+                        if (indexFromUser < 1 || 9 < indexFromUser) {
+                            System.out.println(" Invalid Input ! ! ! ");
+                        } else {
+                            isValidIndex = true;
+
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please enter 'q' or "
+                                + "a number between 1 and 9!");
+                    }
+                }
+            } while (!isValidIndex);
+
+            System.out.println(gameboard.isMoleVisibleAtIndex(indexFromUser - 1));
+            if (gameboard.isMoleVisibleAtIndex(indexFromUser - 1) == true) {
+                score.setScore(score.getScore() + 10);
+            }
         }
-        System.out.println(score.getScore());
+
     }
+
 }

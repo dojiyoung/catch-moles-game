@@ -21,6 +21,8 @@ public class PrintGameTask extends TimerTask{
     
     @Override
     public void run() {
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
         gameboard.printBoard();
     }
 }

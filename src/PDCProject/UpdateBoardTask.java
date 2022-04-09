@@ -5,14 +5,16 @@
  */
 package PDCProject;
 
+import java.util.TimerTask;
+
 /**
  *
  * @author OEM
  */
-public class ScreenUpdator extends Thread{
+public class UpdateBoardTask extends TimerTask{
     Gameboard gb;
     
-    public ScreenUpdator(Gameboard gb){
+    public UpdateBoardTask(Gameboard gb){
         this.gb = gb;
     }
     

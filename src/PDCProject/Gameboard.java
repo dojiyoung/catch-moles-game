@@ -23,6 +23,10 @@ public class Gameboard {
     public Gameboard(Size size) {
         this.size = size;
         this.moles = new HashMap();
+        initializeBoard(size);
+    }
+
+    private void initializeBoard(Size size) {
 
         for (int i = 0; i < size.getRow() * size.getCol(); i++) {
             this.moles.put(i, new Mole());
@@ -50,14 +54,9 @@ public class Gameboard {
             }
         }
     }
+    
+    public boolean isMoleVisibleAtIndex(int index) {
 
-    public void isMoleAtIndex(int index) {
-            for(int i = 0; i == index; i++){
-                if(mole.isVisible() == true){
-                    score.setScore(score.getScore() + 10);
-                } else {
-                    score.setScore(score.getScore());
-                }
-            }
+        return this.moles.get(index).isVisible();
     }
 }
