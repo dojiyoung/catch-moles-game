@@ -37,7 +37,7 @@ public class CatchMole {
 
                 inputFromUser = sc.nextLine();
                 if ("q".equalsIgnoreCase(inputFromUser)) {
-                    System.out.println("Score: "+score.getScore());
+                    System.out.println("Score:"+score.getScore());
                     System.exit(0);
                 } else {
                     try {
