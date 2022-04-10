@@ -6,29 +6,37 @@
 package PDCProject;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 /**
  *
  * @author OEM
  */
 public class GameSession {
-    
-    Gameboard gameboard;
-    Scanner sc = new Scanner(System.in);
+
+    private final Gameboard gameboard;
+    private final Scanner scanner;
     Score score = new Score();
-    
-    public GameSession(Gameboard gameboard) {
+    Timer time = new Timer();
+
+    public GameSession(Gameboard gameboard, Scanner scanner) {
         this.gameboard = gameboard;
+        this.scanner = scanner;
     }
 
     public void start() {
 
+        PrintGameTask printGameTask = new PrintGameTask(gameboard);
+        UpdateBoardTask updateBoardTask = new UpdateBoardTask(gameboard);
+
+        time.schedule(printGameTask, 100, 2000);
+        time.schedule(updateBoardTask, 0, 2001);
         while (true) {
             boolean isValidIndex = false;
             String inputFromUser = null;
             int indexFromUser = -1;
             do {
-                inputFromUser = sc.nextLine();
+                inputFromUser = scanner.nextLine();
                 if ("q".equalsIgnoreCase(inputFromUser)) {
                     System.out.println("Score: " + score.getScore());
                     System.exit(0);
