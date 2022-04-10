@@ -51,7 +51,7 @@ public class GameSession {
 
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Please enter 'q' or "
+                        System.out.println("Please enter 'q' for quit anytime or "
                                 + "a number between 1 and 9!");
                     }
                 }

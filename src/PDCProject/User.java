@@ -5,24 +5,45 @@
  */
 package PDCProject;
 
+import java.util.Objects;
+
 /**
  *
  * @author ssr7324
  */
 public class User {
     private final String userName;
-    private final Score score;
     
-    public User(String userName, Score score){
+    public User(String userName){
         this.userName = userName;
-        this.score = score;
     }
     
     public String getUserName() {
         return userName;
     }
     
+    @Override
     public String toString(){
-        return "[Name: " + this.userName +  ", Score:" + this.score.getScore() + "]";
+        return "[Name: " + this.userName + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return userName.hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return Objects.equals(this.userName, other.userName);
     }
 }

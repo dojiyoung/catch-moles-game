@@ -5,7 +5,8 @@
  */
 package PDCProject;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,19 +16,18 @@ import java.util.Random;
 public class Gameboard {
 
     private final Random rand = new Random();
-    private final HashMap<Integer, Mole> moles;
+    private final List<Mole> moles;
     private final Size size;
 
     public Gameboard(Size size) {
         this.size = size;
-        this.moles = new HashMap();
+        this.moles = new ArrayList<>();
         initializeBoard(size);
     }
 
     private void initializeBoard(Size size) {
-
         for (int i = 0; i < size.getRow() * size.getCol(); i++) {
-            this.moles.put(i, new Mole());
+            this.moles.add(new Mole());
         }
     }
 
@@ -45,7 +45,6 @@ public class Gameboard {
 
     public void printBoard() {
         for (int i = 0; i < moles.size(); i++) {
-
             System.out.print(moles.get(i));
             if ((i + 1) % size.getRow() == 0) {
                 System.out.println();

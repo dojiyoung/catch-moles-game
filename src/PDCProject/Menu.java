@@ -12,11 +12,30 @@ import java.util.Scanner;
  * @author ssr7324
  */
 public class Menu {
-    private Scanner scanner;
-    
-    public Menu(Scanner scanner) {
+
+    private final Scanner scanner;
+//  private final Scoreboard scoreboard;
+    private final GameSession gameSession;
+
+    public Menu(GameSession gameSession, Scanner scanner) {
+        this.gameSession = gameSession;
         this.scanner = scanner;
     }
-    
-    
+
+    public void showMenu() {
+
+        System.out.println("1. Play Game (Press 'P')");
+        System.out.println("2. Score Board (Press 'S')");
+        System.out.println("3. Quit (Press 'Q')");
+        String inputFromUser = scanner.next();
+
+        if ("P".equalsIgnoreCase(inputFromUser)) {
+            gameSession.start();
+        } //else if("S".equalsIgnoreCase(inputFromUser)){
+        //  scoreboard.showScoreboard();    
+        //} 
+        else if ("Q".equalsIgnoreCase(inputFromUser)){
+            System.exit(0);
+        }
+    }
 }
