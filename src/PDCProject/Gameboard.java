@@ -14,11 +14,9 @@ import java.util.Random;
  */
 public class Gameboard {
 
-    private Random rand = new Random();
-    private HashMap<Integer, Mole> moles;
-    private Size size;
-    private Mole mole;
-    private Score score;
+    private final Random rand = new Random();
+    private final HashMap<Integer, Mole> moles;
+    private final Size size;
 
     public Gameboard(Size size) {
         this.size = size;
