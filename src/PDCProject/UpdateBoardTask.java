@@ -12,14 +12,14 @@ import java.util.TimerTask;
  * @author OEM
  */
 public class UpdateBoardTask extends TimerTask{
-    Gameboard gb;
+    Gameboard gameboard;
     
-    public UpdateBoardTask(Gameboard gb){
-        this.gb = gb;
+    public UpdateBoardTask(Gameboard gameboard){
+        this.gameboard = gameboard;
     }
     
     @Override
     public void run(){
-        gb.showOneMole();
+        gameboard.showOneMole();
     }
 }

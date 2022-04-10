@@ -16,7 +16,7 @@ public class GameSession {
 
     private final Gameboard gameboard;
     private final Scanner scanner;
-    Score score = new Score();
+    Score score;
     Timer time = new Timer();
 
     public GameSession(Gameboard gameboard, Scanner scanner) {
@@ -51,7 +51,7 @@ public class GameSession {
 
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Please enter 'q' or "
+                        System.out.println("Please enter 'q' for quit anytime or "
                                 + "a number between 1 and 9!");
                     }
                 }

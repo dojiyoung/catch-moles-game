@@ -10,16 +10,21 @@ package PDCProject;
  * @author ssr7324
  */
 public class Score {
-    int score;
-    
+
+    private int score;
+
     /**
      *
      * @param score
      */
-    public void Score(int score){
+    public Score(int score) {
         this.score = score;
     }
-    
+
+    public Score() {
+        this(0);
+    }
+
     public int getScore() {
         return score;
     }
