@@ -16,7 +16,7 @@ public class GameSession {
 
     private final Gameboard gameboard;
     private final Scanner scanner;
-    Score score;
+    Score score = new Score();
     Timer time = new Timer();
 
     public GameSession(Gameboard gameboard, Scanner scanner) {

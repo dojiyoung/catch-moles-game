@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -44,7 +43,11 @@ public class UserScoreManager {
             System.exit(1);
         }
     }
-    public updateScore
+    
+    public void updateScore(User user, Score score){
+        // TODO: 
+    }
+    
     public void writeScoresToFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
