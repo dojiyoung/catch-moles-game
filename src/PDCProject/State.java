@@ -9,11 +9,12 @@ package PDCProject;
  *
  * @author ssr7324
  */
-public class Program {
+public class State {
 
-    public static void main(String[] args) {
-        SessionManager sessionManager = new SessionManager();
-        
-        sessionManager.start();
+    public enum States {
+        MENU,
+        GAME_STARTED,
+        QUIT,
+        INVALID
     }
 }

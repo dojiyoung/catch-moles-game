@@ -18,13 +18,14 @@ public class GameSession {
     private final Scanner scanner;
     Score score = new Score();
     Timer time = new Timer();
+    User user;
 
     public GameSession(Gameboard gameboard, Scanner scanner) {
         this.gameboard = gameboard;
         this.scanner = scanner;
     }
 
-    public void start() {
+    public void gameStart() {
 
         PrintGameTask printGameTask = new PrintGameTask(gameboard);
         UpdateBoardTask updateBoardTask = new UpdateBoardTask(gameboard);
@@ -37,24 +38,25 @@ public class GameSession {
             int indexFromUser = -1;
             do {
                 inputFromUser = scanner.nextLine();
-                if ("q".equalsIgnoreCase(inputFromUser)) {
-                    System.out.println("Score: " + score.getScore());
-                    System.exit(0);
-                } else {
-                    try {
-                        indexFromUser = Integer.parseInt(inputFromUser);
+//                if ("q".equalsIgnoreCase(inputFromUser)) {
+//                    System.out.println("Score: " + score.getScore());
+//                    System.exit(0);
+//                } 
 
-                        if (indexFromUser < 1 || 9 < indexFromUser) {
-                            System.out.println(" Invalid Input ! ! ! ");
-                        } else {
-                            isValidIndex = true;
+                try {
+                    indexFromUser = Integer.parseInt(inputFromUser);
 
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Please enter 'q' for quit anytime or "
-                                + "a number between 1 and 9!");
+                    if (indexFromUser < 1 || 9 < indexFromUser) {
+                        System.out.println(" Invalid Input ! ! ! ");
+                    } else {
+                        isValidIndex = true;
                     }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter 'q' for quit anytime or "
+                            + "a number between 1 and 9!");
+
                 }
+
             } while (!isValidIndex);
 
             System.out.println(gameboard.isMoleVisibleAtIndex(indexFromUser - 1));

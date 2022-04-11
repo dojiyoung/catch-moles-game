@@ -27,8 +27,8 @@ public class UserScoreManager {
     private String filePath;
 
     public UserScoreManager() {
-        this.userScores = new HashMap<User, Score>();
-        this.filePath = "./resources/Scoreboard.txt";
+        this.userScores = new HashMap<>();
+        this.filePath = "Scoreboard.txt";
         this.file = new File(filePath);
 
         try {
@@ -36,19 +36,21 @@ public class UserScoreManager {
             if (isCreated) {
                 System.out.println("The new file is created.");
             } else {
-                System.out.println("The file already exists.");
+                System.out.println("The file already exists."
+                        + "You can play the game");
             }
         } catch (IOException e) {
             System.err.println("Failed to create a Score Board at " + this.filePath);
             System.exit(1);
         }
     }
-    
-    public void updateScore(User user, Score score){
-        // TODO: 
+
+    public void updateScore(User user, Score score) {
+        // TODO: Creating Updated scores.
+
     }
-    
-    public void writeScoresToFile() {
+
+    public void readScoresFromFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
             try (PrintWriter pw = new PrintWriter(fileOutputStream)) {
@@ -60,8 +62,8 @@ public class UserScoreManager {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public void readScoresFromFile() {
+
+    public void writeScoresToFile() {
         try {
             try (FileInputStream fileInputStream = new FileInputStream(this.file)) {
                 Scanner fileScan = new Scanner(fileInputStream);
