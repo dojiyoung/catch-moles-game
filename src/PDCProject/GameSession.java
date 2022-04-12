@@ -16,9 +16,10 @@ public class GameSession {
 
     private final Gameboard gameboard;
     private final Scanner scanner;
-    Score score = new Score();
-    Timer time = new Timer();
-
+    private final Score score = new Score();
+    private final Timer time = new Timer();
+    private final UserScoreManager userScoreManager = new UserScoreManager();
+    private User checkUser = new User();
     public GameSession(Gameboard gameboard, Scanner scanner) {
         this.gameboard = gameboard;
         this.scanner = scanner;
@@ -38,6 +39,8 @@ public class GameSession {
             do {
                 inputFromUser = scanner.nextLine();
                 if ("q".equalsIgnoreCase(inputFromUser)) {
+                    
+                    userScoreManager.updateUserScore(new User(checkUser.getUserName()), score);
                     System.out.println("Score: " + score.getScore());
                     System.exit(0);
                 } else {
@@ -51,6 +54,7 @@ public class GameSession {
 
                         }
                     } catch (NumberFormatException e) {
+                        
                         System.out.println("Please enter 'q' for quit anytime or "
                                 + "a number between 1 and 9!");
                     }

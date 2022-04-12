@@ -18,8 +18,6 @@ public class Menu {
     private final GameSession gameSession;
     private String inputFromUser;
     private boolean isValid;
-    private User user;
-    private UserScoreManager userScoreManager;
 
     public Menu(GameSession gameSession, Scanner scanner) {
         this.gameSession = gameSession;
@@ -35,15 +33,21 @@ public class Menu {
 
     public void showMenu() {
         isValid = true;
+        UserScoreManager userScoreManager = new UserScoreManager();
+        User user = new User("");
+        Score score;
         showMenuOption();
 
         do {
             inputFromUser = scanner.nextLine();
 
             if ("R".equalsIgnoreCase(inputFromUser)) {
+
                 System.out.println("Please Enter Your Name:");
                 String inputNameFromUser = scanner.nextLine();
                 user = new User(inputNameFromUser);
+                score = new Score();
+                userScoreManager.updateUserScore(user, score);
                 System.out.println("Press 'B' for back to Menu.");
             } else if ("P".equalsIgnoreCase(inputFromUser)) {
                 gameSession.gameStart();
@@ -52,14 +56,13 @@ public class Menu {
             // System.out.println("Press 'B' for back to Menu.");
             //}  
             else if ("Q".equalsIgnoreCase(inputFromUser)) {
-                System.out.println("Quits the program.");
+                System.out.println("Quits the program." + "\n Good Bye, "+user.getUserName());
                 isValid = false;
             } else if ("B".equalsIgnoreCase(inputFromUser)) {
                 this.showMenuOption();
             }
         } while (isValid);
         {
-
             System.exit(0);
         }
     }

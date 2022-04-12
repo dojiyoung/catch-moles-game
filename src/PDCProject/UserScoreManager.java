@@ -25,7 +25,7 @@ public class UserScoreManager {
     private final Map<User, Score> userScores;
     private final File file;
     private String filePath;
-
+    
     public UserScoreManager() {
         this.filePath = "./resources/Scoreboard.txt";
         this.userScores = new HashMap();
@@ -44,24 +44,25 @@ public class UserScoreManager {
         }
     }
 
-    public void updateScore(User user, Score score) {
-        // TODO: 
+    public void updateUserScore(User user, Score score) {
+        this.userScores.put(user, score);
+        writeScoresToFile();
     }
 
-    public void writeScoresToFile() {
+    private void writeScoresToFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
             try (PrintWriter pw = new PrintWriter(fileOutputStream)) {
-                for (Map.Entry<User, Score> entry : userScores.entrySet()) {
+                userScores.entrySet().forEach(entry -> {
                     pw.println(entry.getValue().getScore() + " " + entry.getKey().getUserName());
-                }
+                });
             }
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void readScoresFromFile() {
+    private void readScoresFromFile() {
 
         FileInputStream fileInputStream;
 
