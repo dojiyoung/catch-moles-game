@@ -10,7 +10,7 @@ import java.util.Timer;
 
 /**
  *
- * @author OEM
+ * @author ssr7324
  */
 public class GameSession {
 
@@ -24,7 +24,7 @@ public class GameSession {
         this.scanner = scanner;
     }
 
-    public void start() {
+    public void gameStart() {
 
         PrintGameTask printGameTask = new PrintGameTask(gameboard);
         UpdateBoardTask updateBoardTask = new UpdateBoardTask(gameboard);

@@ -27,8 +27,8 @@ public class UserScoreManager {
     private String filePath;
 
     public UserScoreManager() {
-        this.userScores = new HashMap<User, Score>();
         this.filePath = "./resources/Scoreboard.txt";
+        this.userScores = new HashMap();
         this.file = new File(filePath);
 
         try {
@@ -43,11 +43,11 @@ public class UserScoreManager {
             System.exit(1);
         }
     }
-    
-    public void updateScore(User user, Score score){
+
+    public void updateScore(User user, Score score) {
         // TODO: 
     }
-    
+
     public void writeScoresToFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
@@ -60,20 +60,23 @@ public class UserScoreManager {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public void readScoresFromFile() {
-        try {
-            try (FileInputStream fileInputStream = new FileInputStream(this.file)) {
-                Scanner fileScan = new Scanner(fileInputStream);
 
-                while (fileScan.hasNextLine()) {
-                    String line = fileScan.nextLine();
-                    StringTokenizer st = new StringTokenizer(line);
-                    Score score = new Score(Integer.parseInt(st.nextToken()));
-                    User user = new User(st.nextToken());
-                    userScores.put(user, score);
-                }
+    public void readScoresFromFile() {
+
+        FileInputStream fileInputStream;
+
+        try {
+            fileInputStream = new FileInputStream(this.file);
+            Scanner fileScan = new Scanner(fileInputStream);
+
+            while (fileScan.hasNextLine()) {
+                String line = fileScan.nextLine();
+                StringTokenizer st = new StringTokenizer(line);
+                Score score = new Score(Integer.parseInt(st.nextToken()));
+                User user = new User(st.nextToken());
+                this.userScores.put(user, score);
             }
+            fileInputStream.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
