@@ -5,14 +5,20 @@
  */
 package PDCProject;
 
+import java.util.Map;
+
 /**
  *
  * @author ssr7324
  */
 public class ScoreSession {
-    private final Score score;
     
-    public ScoreSession(Score score){
-        this.score = score;
+    public ScoreSession(){
+    }
+
+    void showScoreboard(Map<User, Score> userScores) {
+        System.out.println("");
+        
+
     }
 }

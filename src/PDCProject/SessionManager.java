@@ -18,12 +18,14 @@ public class SessionManager {
     private final Menu menu;
     private final Size size = new Size(3, 3);
     private final GameSession gameSession;
+    private final ScoreSession scoreSession;
 
     public SessionManager() {
         gameboard = new Gameboard(size);
         scanner = new Scanner(System.in);
         gameSession = new GameSession(gameboard, scanner);
-        menu = new Menu(gameSession, scanner);
+        scoreSession = new ScoreSession();
+        menu = new Menu(gameSession, scoreSession, scanner);
     }
 
     public void start() {

@@ -48,6 +48,10 @@ public class UserScoreManager {
         this.userScores.put(user, score);
         writeScoresToFile();
     }
+    
+    public Map<User, Score> getUserScores(){
+        return this.userScores;
+    }
 
     private void writeScoresToFile() {
         try {
