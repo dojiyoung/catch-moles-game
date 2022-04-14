@@ -17,7 +17,10 @@ public class ScoreSession {
     }
 
     void showScoreboard(Map<User, Score> userScores) {
-        System.out.println("");
+        
+        for (Map.Entry<User,Score> entry : userScores.entrySet()){
+            System.out.println("" + entry.getKey() + entry.getValue());
+        }
         
 
     }
