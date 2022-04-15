@@ -35,8 +35,8 @@ public class UserScoreManager {
             boolean isCreated = file.createNewFile();
             if (isCreated) {
                 System.out.println("The new file is created.");
-            } else {
-                System.out.println("The file already exists.");
+            } else{
+                readScoresFromFile();
             }
         } catch (IOException e) {
             System.err.println("Failed to create a Score Board at " + this.filePath);
@@ -47,6 +47,10 @@ public class UserScoreManager {
     public void updateUserScore(User user, Score score) {
         this.userScores.put(user, score);
         writeScoresToFile();
+    }
+    
+    public Score getScoreForUser(User user){
+        return this.userScores.get(user);
     }
     
     public Map<User, Score> getUserScores(){
@@ -68,10 +72,8 @@ public class UserScoreManager {
 
     private void readScoresFromFile() {
 
-        FileInputStream fileInputStream;
-
-        try {
-            fileInputStream = new FileInputStream(this.file);
+        try (FileInputStream fileInputStream = new FileInputStream(this.file)){
+            
             Scanner fileScan = new Scanner(fileInputStream);
 
             while (fileScan.hasNextLine()) {
@@ -81,7 +83,6 @@ public class UserScoreManager {
                 User user = new User(st.nextToken());
                 this.userScores.put(user, score);
             }
-            fileInputStream.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {

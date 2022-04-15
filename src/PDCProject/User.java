@@ -17,16 +17,14 @@ public class User {
     public User(String userName){
         this.userName = userName;
     }
-    public User(){
-        this("");
-    }
+
     public String getUserName() {
         return userName;
     }
     
     @Override
     public String toString(){
-        return "[Name: " + this.userName + "]";
+        return "[Name: " + this.userName ;
     }
 
     @Override

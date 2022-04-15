@@ -35,6 +35,6 @@ public class Score {
 
     @Override
     public String toString() {
-        return "score : " + score; 
+        return ", Score : " + score +"]"; 
     }
 }
